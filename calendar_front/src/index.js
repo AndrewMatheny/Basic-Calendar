@@ -141,6 +141,7 @@ function createDay(dateObject) {
     thisLi.textContent = theDayNumber
     thisLi.id = theDayId
     daysUl.appendChild(thisLi)
+    return daysUl
     
 }
 
@@ -175,38 +176,71 @@ function findFirstOfMonthDayName(dateObject) {
     
 }
 
+function findFirstOfMonthDayObject(dateObject) {
+    let startDayObject = dateObject
+    let startDay = dateObject.getDate()
+    let firstDay = null
+    let firstDayObject = null
+    if(startDay == 1) {
+        // firstDay = startDay
+        firstDayObject = startDayObject
+        firstDay = firstDayObject.getDay()
+        return firstDayObject
+    } else {
+        let dayDifference = 1 - startDay
+        // firstDayObject = createDateObjByDayDifference(dayDifference)
+        firstDayObject = createDateObjectWithDifference(startDayObject, dayDifference)
+        firstDay = firstDayObject.getDay()
+        return firstDayObject
+        
+    }
+    
+}
+
 
 function generateMonth(dateObject) {
     let firstOfMonth = findFirstOfMonthDayName(dateObject)
+    let firstOfMonthObject = findFirstOfMonthDayObject(dateObject)
     if(firstOfMonth == "Sunday") {
-        generateDays()
+        generateDays(firstOfMonthObject)
     } else if (firstOfMonth == "Monday") {
         createBlankDay()
-        generateDays()
+        generateDays(firstOfMonthObject)
     } else if (firstOfMonth == "Tuesday") {
         createMultipleBlankDays(2)
-        generateDays()
+        generateDays(firstOfMonthObject)
     } else if (firstOfMonth == "Wednesday") {
         createMultipleBlankDays(3)
-        generateDays()
+        generateDays(firstOfMonthObject)
     } else if (firstOfMonth == "Thursday") {
         createMultipleBlankDays(4)
-        generateDays()
+        generateDays(firstOfMonthObject)
     } else if (firstOfMonth == "Friday") {
         createMultipleBlankDays(5)
-        generateDays()
+        generateDays(firstOfMonthObject)
     } else if (firstOfMonth == "Saturday") {
         createMultipleBlankDays(6)
-        generateDays()
+        generateDays(firstOfMonthObject)
     }
 
 }
 
-function generateDays() {
-    //for(let i = 0; )
+function createDaysStartingFromFirstOfMonth(firstDateObjectOfMonth) {
+    createDay(firstDateObjectOfMonth)
+    let nextDay = createDateObjectWithDifference(firstDateObjectOfMonth, )
+}
+
+function generateDays(firstDateObjectOfMonth) {
+    let numberOfDaysInMonth = howManyDaysInMonth(firstDateObjectOfMonth)
+    for(let i = 0; i < (numberOfDaysInMonth); i++) {
+        let eachDay = createDateObjectWithDifference(firstDateObjectOfMonth, i)
+        createDay(eachDay)
+        
+    }
     
 }
 
+//currently doesn't account for leap years
 function howManyDaysInMonth(dateObject) {
     thisMonth = dateObject.getMonth() + 1
     if(thisMonth == 1 || thisMonth == 3 || thisMonth == 5 || thisMonth == 7 || thisMonth == 8 || thisMonth == 10 || thisMonth == 12) {
@@ -218,7 +252,8 @@ function howManyDaysInMonth(dateObject) {
     }
 }
 
-activateCurrentDay()
-// document.addEventListener("DOMContentLoaded", function() {
-//     activateCurrentDay()
-// })
+
+generateMonth(todayDateObj)
+document.addEventListener("DOMContentLoaded", function() {
+    activateCurrentDay()
+})
