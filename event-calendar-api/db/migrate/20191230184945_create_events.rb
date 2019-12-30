@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :description
       t.integer :priority
+      t.integer :user_id
 
       t.timestamps
     end
