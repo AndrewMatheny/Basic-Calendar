@@ -104,7 +104,10 @@ let nameOfMonth = monthToText(month)
 current_month.innerHTML = nameMonth
 //------------------------------------------------------------
 
-
+//returns date object for different day
+function createDateObjByDayDifference(numberOfDays) {
+    return new Date((new Date()).getTime() + (numberOfDays * 86400000))
+}
 
 
 
