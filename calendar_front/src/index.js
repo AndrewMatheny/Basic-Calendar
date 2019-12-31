@@ -1,25 +1,39 @@
+//Prev event listener
 document.querySelector(".prev").addEventListener("click", function() {
     alert("Previous was clicked!")
 })
 
+//Next event listener
 document.querySelector(".next").addEventListener("click", function() {
     alert("Next was clicked!")
 })
 
+//Generates event listener for every day - to be used to pull up modals for each day
 document.querySelectorAll(".day").forEach(day => {
     day.addEventListener("click", function() {
         alert(`${day.innerHTML}`)
     })
 })
 
-var dateObj = new Date();
-var month = dateObj.getMonth() + 1;
-var day = dateObj.getDate();
-var year = dateObj.getFullYear();
-var dayOfWeek = dateObj.getDay();
+
+var todayDateObj = new Date();
+var month = todayDateObj.getMonth() + 1;
+var day = todayDateObj.getDate();
+var year = todayDateObj.getFullYear();
+var dayOfWeek = todayDateObj.getDay();
 var nameDay = ""
 var nameMonth = ""
 let newdate = month + "/" + day
+var dateId = ""
+
+//generates id for day of ddmmyyyy
+function DaytoId(dateObject) {
+    let obDay = dateObject.getDate();
+    let obMonth = dateObject.getMonth() + 1
+    let obYear = dateObject.getFullYear()
+    return dateId = `${obDay}${obMonth}${obYear}`
+
+}
 
 //gets day of week from system and converts to name of the weekday
 function dayOfWeekToText(numberOfDay) {
