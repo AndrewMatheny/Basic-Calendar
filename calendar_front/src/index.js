@@ -29,10 +29,18 @@ var dateId = ""
 //generates id for day of ddmmyyyy
 function DaytoId(dateObject) {
     let obDay = dateObject.getDate();
+
     let obMonth = dateObject.getMonth() + 1
     let obYear = dateObject.getFullYear()
     return dateId = `${obDay}${obMonth}${obYear}`
 
+}
+
+//highlights current day with id based on system date
+function activateCurrentDay() {
+    let todayID = DaytoId(todayDateObj)
+    let todayCard = document.getElementById(todayID)
+    todayCard.innerHTML = `<span class="active"> ${day} </span>`
 }
 
 //gets day of week from system and converts to name of the weekday
@@ -45,7 +53,7 @@ function dayOfWeekToText(numberOfDay) {
         nameDay = "Tuesday"
     } else if(numberOfDay == 3) {
         nameDay = "Wednesday"
-    } else if(numberofDay == 4) {
+    } else if(numberOfDay == 4) {
         nameDay = "Thursday"
     } else if(numberOfDay == 5) {
         nameDay = "Friday"
@@ -83,6 +91,7 @@ function monthToText(numberOfMonth) {
     }
 }
 
+//header generators that pull info from current system date
 let current_date = document.querySelector(".current")
 current_date.innerHTML = newdate
 
@@ -93,4 +102,19 @@ current_day_of_week.innerHTML = nameDay
 let current_month = document.querySelector(".nameOfMonth")
 let nameOfMonth = monthToText(month)
 current_month.innerHTML = nameMonth
+//------------------------------------------------------------
 
+
+
+
+
+
+// function createBlankDay() {
+//    let daysUl = document.querySelector(".days")
+//    daysUl.prependChild("li")
+// }
+
+activateCurrentDay()
+// document.addEventListener("DOMContentLoaded", function() {
+//     activateCurrentDay()
+// })
