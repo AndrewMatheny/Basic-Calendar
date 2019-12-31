@@ -11,3 +11,13 @@ document.querySelectorAll(".day").forEach(day => {
         alert(`${day.innerHTML}`)
     })
 })
+
+var dateObj = new Date();
+var month = dateObj.getMonth() + 1;
+var day = dateObj.getDate();
+var year = dateObj.getFullYear();
+
+newdate = month + "/" + day
+
+let current_date = document.querySelector(".current")
+current_date.innerHTML = newdate
