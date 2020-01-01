@@ -112,10 +112,11 @@ function createDateObjByDayDifference(numberOfDays) {
 
 
 
-// function createBlankDay() {
-//    let daysUl = document.querySelector(".days")
-//    daysUl.prependChild("li")
-// }
+function createBlankDay() {
+   let daysUl = document.querySelector(".days")
+   const li = document.createElement("li")
+   daysUl.appendChild(li)
+}
 
 activateCurrentDay()
 // document.addEventListener("DOMContentLoaded", function() {
