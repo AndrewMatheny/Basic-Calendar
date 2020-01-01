@@ -27,6 +27,8 @@ let newdate = month + "/" + day
 var dateId = ""
 const daysUl = document.querySelector(".days")
 const li = document.createElement("li")
+let firstDayOfMonthObject = ""
+let firstDayOfMonth = ""
 
 //generates id for day of ddmmyyyy
 function dayToId(dateObject) {
@@ -130,6 +132,27 @@ function createDay(dateObject) {
     thisLi.textContent = theDayNumber
     thisLi.id = theDayId
     daysUl.appendChild(thisLi)
+    
+}
+
+function findFirstOfMonth(dateObject) {
+    let startDayObject = dateObject
+    let startDay = dateObject.getDate()
+    let firstDay = null
+    let firstDayObject = null
+    if(startDay == 1) {
+        firstDay = startDay
+        firstDayObject = startDayObject
+    } else {
+        let dayDifference = 1 - startDay
+        firstDayObject = createDateObjByDayDifference(dayDifference)
+        firstDay = firstDayObject.getDate()
+    }
+
+    // firstdayofMonthObject = firstDayObject
+    // firstDayOfMonth = firstDay
+
+    return firstDayObject
     
 }
 
