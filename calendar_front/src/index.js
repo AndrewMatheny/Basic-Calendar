@@ -26,6 +26,7 @@ var nameMonth = ""
 let newdate = month + "/" + day
 var dateId = ""
 const daysUl = document.querySelector(".days")
+var thisMonth = month
 //const li = document.createElement("li")
 // let firstDayOfMonthObject = ""
 // let firstDayOfMonth = ""
@@ -177,7 +178,44 @@ function findFirstOfMonthDayName(dateObject) {
 
 function generateMonth(dateObject) {
     let firstOfMonth = findFirstOfMonthDayName(dateObject)
+    if(firstOfMonth == "Sunday") {
+        generateDays()
+    } else if (firstOfMonth == "Monday") {
+        createBlankDay()
+        generateDays()
+    } else if (firstOfMonth == "Tuesday") {
+        createMultipleBlankDays(2)
+        generateDays()
+    } else if (firstOfMonth == "Wednesday") {
+        createMultipleBlankDays(3)
+        generateDays()
+    } else if (firstOfMonth == "Thursday") {
+        createMultipleBlankDays(4)
+        generateDays()
+    } else if (firstOfMonth == "Friday") {
+        createMultipleBlankDays(5)
+        generateDays()
+    } else if (firstOfMonth == "Saturday") {
+        createMultipleBlankDays(6)
+        generateDays()
+    }
 
+}
+
+function generateDays() {
+    //for(let i = 0; )
+    
+}
+
+function howManyDaysInMonth(dateObject) {
+    thisMonth = dateObject.getMonth() + 1
+    if(thisMonth == 1 || thisMonth == 3 || thisMonth == 5 || thisMonth == 7 || thisMonth == 8 || thisMonth == 10 || thisMonth == 12) {
+        return 31
+    } else if (thisMonth == 4 || thisMonth == 6 || thisMonth == 9 || thisMonth == 11) {
+        return 30
+    } else if (thisMonth == 2) {
+        return 28
+    }
 }
 
 activateCurrentDay()
