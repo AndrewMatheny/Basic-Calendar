@@ -147,8 +147,10 @@ function findFirstOfMonthDayName(dateObject) {
     let firstDay = null
     let firstDayObject = null
     if(startDay == 1) {
-        firstDay = startDay
+        // firstDay = startDay
         firstDayObject = startDayObject
+        firstDay = firstDayObject.getDay()
+        return dayOfWeekToText(firstDay)
     } else {
         let dayDifference = 1 - startDay
         // firstDayObject = createDateObjByDayDifference(dayDifference)
