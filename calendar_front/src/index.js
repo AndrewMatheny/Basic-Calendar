@@ -27,8 +27,8 @@ let newdate = month + "/" + day
 var dateId = ""
 const daysUl = document.querySelector(".days")
 const li = document.createElement("li")
-let firstDayOfMonthObject = ""
-let firstDayOfMonth = ""
+// let firstDayOfMonthObject = ""
+// let firstDayOfMonth = ""
 
 //generates id for day of ddmmyyyy
 function dayToId(dateObject) {
@@ -68,6 +68,7 @@ function dayOfWeekToText(numberOfDay) {
     } else if(numberOfDay == 6) {
         nameDay = "Saturday"
     }
+    return nameDay
 }
 
 //Gets month number from system and converts to the month name
@@ -112,10 +113,10 @@ let nameOfMonth = monthToText(month)
 current_month.innerHTML = nameMonth
 //------------------------------------------------------------
 
-//returns date object for different day
-function createDateObjByDayDifference(numberOfDays) {
-    return new Date((new Date()).getTime() + (numberOfDays * 86400000))
-}
+//returns date object for different day -- This is wrong - saving for info
+// function createDateObjByDayDifference(numberOfDays) {
+//     return new Date((new Date()).getTime() + (numberOfDays * 86400000))
+// }
 
 
 function createBlankDay() {
@@ -135,7 +136,12 @@ function createDay(dateObject) {
     
 }
 
-function findFirstOfMonth(dateObject) {
+//creates a new date object by difference in days given a date object and the day difference
+function createDateObjectWithDifference(dateObject, diffInDays) {
+    return new Date(dateObject.getTime() + (diffInDays * 86400000))
+}
+
+function findFirstOfMonthDayName(dateObject) {
     let startDayObject = dateObject
     let startDay = dateObject.getDate()
     let firstDay = null
@@ -145,16 +151,27 @@ function findFirstOfMonth(dateObject) {
         firstDayObject = startDayObject
     } else {
         let dayDifference = 1 - startDay
-        firstDayObject = createDateObjByDayDifference(dayDifference)
-        firstDay = firstDayObject.getDate()
+        // firstDayObject = createDateObjByDayDifference(dayDifference)
+        firstDayObject = createDateObjectWithDifference(startDayObject, dayDifference)
+        firstDay = firstDayObject.getDay()
+        return dayOfWeekToText(firstDay)
+        
     }
 
     // firstdayofMonthObject = firstDayObject
     // firstDayOfMonth = firstDay
-
-    return firstDayObject
+    // let firstOfMonthName = dayOfWeekToText(firstDayObject.getDate())
+    // return firstOfMonthName
     
 }
+
+// function generateMonth(dateObject) {
+//     let firstOfMonth = findFirstOfMonth(dateObject)
+//     let firstOfMonthDay = firstOfMonth.getDay()
+//     let firstofMonthName = dayOfWeekToText(firstOfMonthDay)
+//     return firstofMonth
+    
+// }
 
 activateCurrentDay()
 // document.addEventListener("DOMContentLoaded", function() {
