@@ -26,7 +26,7 @@ var nameMonth = ""
 let newdate = month + "/" + day
 var dateId = ""
 const daysUl = document.querySelector(".days")
-const li = document.createElement("li")
+//const li = document.createElement("li")
 // let firstDayOfMonthObject = ""
 // let firstDayOfMonth = ""
 
@@ -121,8 +121,15 @@ current_month.innerHTML = nameMonth
 
 function createBlankDay() {
    //let daysUl = document.querySelector(".days")
-//    const li = document.createElement("li")
+   const li = document.createElement("li")
    daysUl.appendChild(li)
+   return daysUl
+}
+
+function createMultipleBlankDays(number){
+    for(let i=0; i<number; i++ ) {
+        createBlankDay()
+    }
 }
 
 function createDay(dateObject) {
@@ -167,13 +174,11 @@ function findFirstOfMonthDayName(dateObject) {
     
 }
 
-// function generateMonth(dateObject) {
-//     let firstOfMonth = findFirstOfMonth(dateObject)
-//     let firstOfMonthDay = firstOfMonth.getDay()
-//     let firstofMonthName = dayOfWeekToText(firstOfMonthDay)
-//     return firstofMonth
-    
-// }
+
+function generateMonth(dateObject) {
+    let firstOfMonth = findFirstOfMonthDayName(dateObject)
+
+}
 
 activateCurrentDay()
 // document.addEventListener("DOMContentLoaded", function() {
