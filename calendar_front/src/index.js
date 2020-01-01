@@ -25,6 +25,8 @@ var nameDay = ""
 var nameMonth = ""
 let newdate = month + "/" + day
 var dateId = ""
+const daysUl = document.querySelector(".days")
+const li = document.createElement("li")
 
 //generates id for day of ddmmyyyy
 function dayToId(dateObject) {
@@ -34,6 +36,10 @@ function dayToId(dateObject) {
     let obYear = dateObject.getFullYear()
     return dateId = `${obDay}${obMonth}${obYear}`
 
+}
+
+function getDayNumber(dateObject) {
+    return dateObject.getDate()
 }
 
 //highlights current day with id based on system date
@@ -110,12 +116,21 @@ function createDateObjByDayDifference(numberOfDays) {
 }
 
 
-
-
 function createBlankDay() {
-   let daysUl = document.querySelector(".days")
-   const li = document.createElement("li")
+   //let daysUl = document.querySelector(".days")
+//    const li = document.createElement("li")
    daysUl.appendChild(li)
+}
+
+function createDay(dateObject) {
+    let theDayId = dayToId(dateObject)
+    let theDayNumber = getDayNumber(dateObject)
+    let thisLi = document.createElement("li")
+    thisLi.className = "day"
+    thisLi.textContent = theDayNumber
+    thisLi.id = theDayId
+    daysUl.appendChild(thisLi)
+    
 }
 
 activateCurrentDay()
