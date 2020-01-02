@@ -9,11 +9,13 @@ document.querySelector(".next").addEventListener("click", function() {
 })
 
 //Generates event listener for every day - to be used to pull up modals for each day
-document.querySelectorAll(".day").forEach(day => {
-    day.addEventListener("click", function() {
-        alert(`${day.innerHTML}`)
+function addDayListeners() {
+    document.querySelectorAll(".day").forEach(day => {
+        day.addEventListener("click", function() {
+            alert(`${day.innerHTML}`)
+        })
     })
-})
+}
 
 
 var todayDateObj = new Date();
@@ -267,6 +269,7 @@ function generateNextMonth() {
     nameOfMonth = monthToText(aDateObject.getMonth()+1)
     current_month.innerHTML = nameMonth
     current_year.innerHTML = aDateObject.getFullYear()
+    addDayListeners()
     if(aDateObject.getMonth()+1 == month) {
         activateCurrentDay()
     }
@@ -287,6 +290,7 @@ function generatePrevMonth() {
     nameOfMonth = monthToText(aDateObject.getMonth()+1)
     current_month.innerHTML = nameMonth
     current_year.innerHTML = aDateObject.getFullYear()
+    addDayListeners()
     if(aDateObject.getMonth()+1 == month) {
         activateCurrentDay()
     }
@@ -298,5 +302,6 @@ function generatePrevMonth() {
 generateMonth(todayDateObj)
 document.addEventListener("DOMContentLoaded", function() {
     activateCurrentDay()
+    addDayListeners()
 })
 
