@@ -29,6 +29,7 @@ let newdate = month + "/" + day
 var dateId = ""
 const daysUl = document.querySelector(".days")
 var thisMonth = month
+var thisYear = year
 var aDateObject = todayDateObj
 //const li = document.createElement("li")
 // let firstDayOfMonthObject = ""
@@ -40,9 +41,17 @@ function dayToId(dateObject) {
 
     let obMonth = dateObject.getMonth() + 1
     let obYear = dateObject.getFullYear()
-    return dateId = `${obDay}${obMonth}${obYear}`
+    return dateId = `${obDay}-${obMonth}-${obYear}`
 
 }
+
+// function checkAllDaysIds() {
+//     daysUl
+// }
+
+// function checkIdAgainstMonth(dayId, monthNum) {
+
+// }
 
 function getDayNumber(dateObject) {
     return dateObject.getDate()
@@ -128,8 +137,11 @@ current_year.innerHTML = year
 
 function createBlankDay() {
    //let daysUl = document.querySelector(".days")
-   const li = document.createElement("li")
-   daysUl.appendChild(li)
+//    const li = document.createElement("li")
+    let blankLi = document.createElement("li")
+    blankLi.textContent = "'"
+    blankLi.className = "blankDay"
+   daysUl.appendChild(blankLi)
    return daysUl
 }
 
@@ -249,7 +261,13 @@ function howManyDaysInMonth(dateObject) {
     } else if (thisMonth == 4 || thisMonth == 6 || thisMonth == 9 || thisMonth == 11) {
         return 30
     } else if (thisMonth == 2) {
-        return 28
+        // return 28
+        if(thisYear % 4 === 0) {
+            return 29
+        }else {
+            return 28
+        }
+        
     }
 }
 
@@ -305,3 +323,29 @@ document.addEventListener("DOMContentLoaded", function() {
     addDayListeners()
 })
 
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
