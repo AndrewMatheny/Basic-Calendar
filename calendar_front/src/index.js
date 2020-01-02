@@ -318,9 +318,16 @@ function generatePrevMonth() {
 
 
 generateMonth(todayDateObj)
+let emailInput = document.getElementById("login")
 document.addEventListener("DOMContentLoaded", function() {
     activateCurrentDay()
     addDayListeners()
+    emailInput.addEventListener("submit", function(e) {
+        e.preventDefault()
+        let userLoginAttempt = document.querySelector(".input-field").value
+        
+        console.log(userLoginAttempt)
+    })
 })
 
 
@@ -348,4 +355,14 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+
+const BASE_URL = "http://localhost:3000"
+const USER_URL = `${BASE_URL}/users`
+const EVENT_URL = `${BASE_URL}/events`
+
+
+
+function getEvents(obj) {
+    obj.forEach(event => {console.log(event)})
 }
