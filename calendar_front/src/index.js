@@ -267,6 +267,11 @@ function generateNextMonth() {
     nameOfMonth = monthToText(aDateObject.getMonth()+1)
     current_month.innerHTML = nameMonth
     current_year.innerHTML = aDateObject.getFullYear()
+    if(aDateObject.getMonth()+1 == month) {
+        activateCurrentDay()
+    }
+
+    
 
 }
 
@@ -282,6 +287,9 @@ function generatePrevMonth() {
     nameOfMonth = monthToText(aDateObject.getMonth()+1)
     current_month.innerHTML = nameMonth
     current_year.innerHTML = aDateObject.getFullYear()
+    if(aDateObject.getMonth()+1 == month) {
+        activateCurrentDay()
+    }
 
 
 }
