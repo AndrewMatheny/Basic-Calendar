@@ -27,7 +27,7 @@ let newdate = month + "/" + day
 var dateId = ""
 
 //generates id for day of ddmmyyyy
-function DaytoId(dateObject) {
+function dayToId(dateObject) {
     let obDay = dateObject.getDate();
 
     let obMonth = dateObject.getMonth() + 1
@@ -38,7 +38,7 @@ function DaytoId(dateObject) {
 
 //highlights current day with id based on system date
 function activateCurrentDay() {
-    let todayID = DaytoId(todayDateObj)
+    let todayID = dayToId(todayDateObj)
     let todayCard = document.getElementById(todayID)
     todayCard.innerHTML = `<span class="active"> ${day} </span>`
 }
