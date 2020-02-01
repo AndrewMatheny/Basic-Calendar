@@ -1,11 +1,11 @@
 //Prev event listener
 document.querySelector(".prev").addEventListener("click", function() {
-    alert("Previous was clicked!")
+    generatePrevMonth()
 })
 
 //Next event listener
 document.querySelector(".next").addEventListener("click", function() {
-    alert("Next was clicked!")
+    generateNextMonth()
 })
 
 //Generates event listener for every day - to be used to pull up modals for each day
@@ -27,6 +27,7 @@ let newdate = month + "/" + day
 var dateId = ""
 const daysUl = document.querySelector(".days")
 var thisMonth = month
+var aDateObject = todayDateObj
 //const li = document.createElement("li")
 // let firstDayOfMonthObject = ""
 // let firstDayOfMonth = ""
@@ -102,16 +103,19 @@ function monthToText(numberOfMonth) {
 }
 
 //header generators that pull info from current system date
-let current_date = document.querySelector(".current")
-current_date.innerHTML = newdate
+// let current_date = document.querySelector(".current")
+// current_date.innerHTML = newdate
 
-let current_day_of_week = document.querySelector(".dayOfWeek")
-let nameOfDay = dayOfWeekToText(dayOfWeek)
-current_day_of_week.innerHTML = nameDay
+// let current_day_of_week = document.querySelector(".dayOfWeek")
+// let nameOfDay = dayOfWeekToText(dayOfWeek)
+// current_day_of_week.innerHTML = nameDay
 
 let current_month = document.querySelector(".nameOfMonth")
 let nameOfMonth = monthToText(month)
 current_month.innerHTML = nameMonth
+
+let current_year = document.querySelector(".year")
+current_year.innerHTML = year
 //------------------------------------------------------------
 
 //returns date object for different day -- This is wrong - saving for info
@@ -225,11 +229,6 @@ function generateMonth(dateObject) {
 
 }
 
-function createDaysStartingFromFirstOfMonth(firstDateObjectOfMonth) {
-    createDay(firstDateObjectOfMonth)
-    let nextDay = createDateObjectWithDifference(firstDateObjectOfMonth, )
-}
-
 function generateDays(firstDateObjectOfMonth) {
     let numberOfDaysInMonth = howManyDaysInMonth(firstDateObjectOfMonth)
     for(let i = 0; i < (numberOfDaysInMonth); i++) {
@@ -252,8 +251,44 @@ function howManyDaysInMonth(dateObject) {
     }
 }
 
+function generateNextMonth() {
+    daysUl.innerHTML = ""
+    // aDateObject.setMonth(aDateObject.getMonth() + monthDiff)
+    // return aDateObject
+
+    if (aDateObject.getMonth() == 11) {
+        var current = new Date(aDateObject.getFullYear() + 1, 0, 1);
+        aDateObject = current
+    } else {
+        var current = new Date(aDateObject.getFullYear(), aDateObject.getMonth() + 1, 1);
+        aDateObject = current
+    }
+    generateMonth(current)
+    nameOfMonth = monthToText(aDateObject.getMonth()+1)
+    current_month.innerHTML = nameMonth
+    current_year.innerHTML = aDateObject.getFullYear()
+
+}
+
+function generatePrevMonth() {
+    daysUl.innerHTML = ""
+
+    aDateObject = findFirstOfMonthDayObject(aDateObject)
+    aDateObject.setMonth(aDateObject.getMonth() - 1)
+    generateMonth(aDateObject)
+
+    
+
+    nameOfMonth = monthToText(aDateObject.getMonth()+1)
+    current_month.innerHTML = nameMonth
+    current_year.innerHTML = aDateObject.getFullYear()
+
+
+}
+
 
 generateMonth(todayDateObj)
 document.addEventListener("DOMContentLoaded", function() {
     activateCurrentDay()
 })
+
